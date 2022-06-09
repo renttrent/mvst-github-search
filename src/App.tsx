@@ -1,9 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppLayout } from "./layouts/AppLayout";
+import { Welcome } from "./pages/Welcome";
 
-function App() {
+const App: React.FC<{}> = () => {
   return (
-    <div className="App">
-      
-    </div>
+    <AppLayout> 
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+        </Routes>
+      </BrowserRouter>
+    </AppLayout>
   );
 }
 
