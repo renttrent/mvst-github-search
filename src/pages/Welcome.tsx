@@ -3,7 +3,7 @@ import RepoGrid from "../components/RepoGrid"
 import { SearchButton } from "../components/SearchButton"
 import { SearchFields } from "../components/SearchFields"
 import AuthContext from "../context/auth"
-import { getUserRepos } from "../util/util"
+import { getPublicRepo, getUserRepos } from "../util/util"
 
 export const Welcome: React.FC<{}> = () => {
 
@@ -24,9 +24,10 @@ export const Welcome: React.FC<{}> = () => {
           setHelp(data.message)
           return
         } 
-        fetch(`https://api.github.com/users/${findUser.current?.value}/repos`)
-        .then((res) => res.json())
-        .then(data => setRepoList(data))
+        getPublicRepo(`https://api.github.com/users/${findUser.current?.value}/repos`)
+        .then((res) => {
+          setRepoList(res)
+        })
       })
     }
   }
@@ -43,8 +44,17 @@ export const Welcome: React.FC<{}> = () => {
   useEffect(() => {
 
     if(state.user) {
-      const repos = getUserRepos(state.user)
-      console.log("User repos: ", repos)
+      getUserRepos(state.user)
+      .then(res => {
+        if(typeof res === 'string') {
+          setHelp(res)
+          return
+        } else {
+          setHelp(null)
+          setRepoList(res)
+        }
+      })
+      
     }
 
     const handleChange = () => {

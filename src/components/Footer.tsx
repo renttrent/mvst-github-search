@@ -12,17 +12,37 @@ export const Footer: React.FC<{}> = () => {
 
   if(isLoggedIn) {
     return (
-      <div className="flex flex-col md:flex-row gap-4 items-start md:items-center absolute bottom-2">
+      <>
+      <div className="lg:flex hidden flex-col md:flex-row gap-4 items-start md:items-center absolute bottom-2">
         {/* @ts-ignore */}
-        <span>Hey {user?.login}! You are still logged in.</span>
-        <LogOutButton />
+        <div className="flex flex-row gap-2 bg-gray-200 border-2 border-gray-800 text-gray-900 items-center px-3 py-2 rounded-md">
+          <img className="rounded-full w-10" src={user?.avatar_url || ""} alt="profile-pic" />
+          <a href={user?.html_url}>{user?.login}</a>
+          <LogOutButton />
+        </div>
       </div>
+      <div className="flex lg:hidden gap-4 mt-40 mb-4">
+        <div className="w-full flex flex-row gap-2 justify-between bg-gray-200 border-2 border-gray-800 text-gray-900 items-center p-3 rounded-md">
+          <div className="flex flex-row gap-2 items-center">
+            <img className="rounded-full w-10" src={user?.avatar_url || ""} alt="profile-pic" />
+            <a href={user?.html_url}>{user?.login}</a>
+          </div>
+          <LogOutButton />
+        </div>
+      </div>
+      </>
     )
   }
   return (
-    <div className="flex flex-col md:flex-row gap-4 items-start md:items-center absolute bottom-2">
+    <>
+    <div className="lg:flex flex-col md:flex-row gap-4 items-start md:items-center absolute hidden bottom-2">
       <span>Search your own public & private repos?</span> 
       <GithubSignInButton />
     </div>
+    <div className="flex lg:hidden flex-col items-center gap-2 relative mt-40 mb-4">
+      <span>Search your own public & private repos?</span> 
+      <GithubSignInButton />
+    </div>
+    </>
  ) 
 }
