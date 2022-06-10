@@ -2,8 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import { FaArrowLeft } from "react-icons/fa"
 import { Navigate, useLocation, useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
-import AuthContext from "../context/auth"
-
+import AuthContext, { AuthOptions } from "../context/auth"
+import axios from "axios"
 export const Login: React.FC<{}> = () => {
 
   const { state, dispatch } = useContext(AuthContext)
@@ -17,23 +17,24 @@ export const Login: React.FC<{}> = () => {
       console.log(code)
       setFeedback({isLoading: true, help: ""})
       
-      fetch(state.proxy_url || "https://localhost:5000/auth", {
-        method: "POST",
-        body: JSON.stringify({code: code})
-      })
-      .then(res => res.json())
-      .then(data => {
-        dispatch({
-          type: "LOGIN",
-          payload: { ...state, user: data, isLoggedIn: true}
+      axios.post(state.proxy_url || "http://localhost:5000/auth", {code: code})
+      .then((res) => {
+        const oauth = res.data
+
+        axios.get("https://api.github.com/user", {
+          headers: {
+            "Authorization": `token ${oauth.access_token}`
+          }
+        })
+        .then((res) => {
+          dispatch({
+            type: AuthOptions.LOGIN,
+            payload: { ... state, user: { oauth, ...res.data }, isLoggedIn: true}
+          })
         })
       })
-      .catch(err => {
-        setFeedback({ isLoading: false, help: "Login failed. Please Login again." })
-      })
-      
     }
-  }, [state])
+  }, [])
 
   // if(!state.isLoggedIn) {
   //   return <Navigate to="/"/>

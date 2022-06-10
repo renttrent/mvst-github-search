@@ -11,7 +11,8 @@ export const Footer: React.FC<{}> = () => {
   if(isLoggedIn) {
     return (
       <div className="flex flex-col md:flex-row gap-4 items-start md:items-center absolute bottom-2">
-        <span>Hey `username`! You are still logged in.</span>
+        {/* @ts-ignore */}
+        <span>Hey {state.user?.login}! You are still logged in.</span>
         <LogOutButton />
       </div>
     )

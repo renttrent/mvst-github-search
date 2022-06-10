@@ -1,16 +1,14 @@
-import { Repo } from "../types/general"
-import { Card } from "./Card"
+import { Repo } from "../../types/general"
+import { Card } from "../Card"
+import styled from "@emotion/styled"
 
-const styles = {
-  maxHeight: "500px",
-  "::-webkit-scrollbar": {
-    width: "4px"
-  }
-}
+const Grid = styled('div')`
+  
+`
+const RepoGrid: React.FC<{repoList: Array<Repo>}> = ({repoList}) => {
 
-export const RepoGrid: React.FC<{repoList: Array<Repo>}> = ({repoList}) => {
   return (
-    <div className="overflow-y-auto mt-4 shadow-lg" style={styles}>
+    <div className="grid overflow-y-auto mt-4 shadow-lg">
       {repoList.map((repo) => (
         <Card key={repo.id} title={repo.name} desc={repo.description} 
         forks={repo.forks_count} stars={repo.stargazers_count} 
@@ -19,3 +17,5 @@ export const RepoGrid: React.FC<{repoList: Array<Repo>}> = ({repoList}) => {
     </div>
   )
 }
+
+export default RepoGrid;

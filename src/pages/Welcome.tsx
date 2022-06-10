@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { RepoGrid } from "../components/RepoGrid"
+import RepoGrid from "../components/RepoGrid"
 import { SearchButton } from "../components/SearchButton"
 import { SearchFields } from "../components/SearchFields"
 
