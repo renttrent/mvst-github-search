@@ -8,8 +8,6 @@ export const Footer: React.FC<{}> = () => {
   const { state } = useContext(AuthContext)
   const { isLoggedIn, user } = state
   
-  console.log(state)
-
   if(isLoggedIn) {
     return (
       <>

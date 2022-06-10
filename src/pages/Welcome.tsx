@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react"
-import RepoGrid from "../components/RepoGrid"
+import { RepoGrid } from "../components/RepoGrid"
 import { SearchButton } from "../components/SearchButton"
 import { SearchFields } from "../components/SearchFields"
 import AuthContext from "../context/auth"
+import { Repo } from "../types/general"
 import { getPublicRepo, getUserRepos } from "../util/util"
 
 export const Welcome: React.FC<{}> = () => {
@@ -14,6 +15,7 @@ export const Welcome: React.FC<{}> = () => {
 
   const [help, setHelp] = useState<string | null>(null)
   const [repoList, setRepoList] = useState([])
+  const [showRepo, setShowRepo] = useState([])
 
   const updateRepos = () => {
     if(findUser.current?.value) {
@@ -32,7 +34,7 @@ export const Welcome: React.FC<{}> = () => {
     }
   }
 
-  const handleSearch = () => {
+  const handleSearchUser = () => {
     if(findUser.current?.value === "") {
       findUser.current.focus()
       setHelp("Please add a github profile!")
@@ -40,6 +42,13 @@ export const Welcome: React.FC<{}> = () => {
     }
     updateRepos()
   }
+
+  const handleSearchRepo = () => {
+    setShowRepo(repoList.filter((repo: Repo) => repo.name.toLowerCase().includes(findRepo.current?.value.toLowerCase() || "")))
+    if(findRepo.current?.value === "" || findRepo.current?.value.match(/\s*/)) {
+      setShowRepo(repoList)
+    }
+  }   
 
   useEffect(() => {
 
@@ -66,14 +75,18 @@ export const Welcome: React.FC<{}> = () => {
     return () => window.removeEventListener("change", handleChange)
   }, [findRepo, findUser, state])
 
+  useEffect(() => {
+    setShowRepo(repoList)
+  }, [repoList])
+
   return (
     <div>
       <div className="text-2xl font-bold">Welcome to Repo Search</div> 
       <div>Find a public repo here</div>
       {help && <div className="bg-lime-200 text-lime-900 p-3 text-center rounded-md">{help}</div>}
-      <SearchFields findRepo={findRepo} findUser={findUser}/> 
-      <SearchButton onClick={handleSearch} />
-      <RepoGrid repoList={repoList}/>
+      <SearchFields findRepo={findRepo} findUser={findUser} onChange={handleSearchRepo}/> 
+      <SearchButton onClick={handleSearchUser} />
+      <RepoGrid repoList={showRepo}/>
     </div>
        
   )

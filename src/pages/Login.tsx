@@ -33,18 +33,24 @@ export const Login: React.FC<{}> = () => {
             payload: { ... state, user: { oauth, ...res.data }, isLoggedIn: true}
           })
         })
+        .catch((err) => {
+          setFeedback({isLoading: true, help: `Error! ${err.message}`})
+        })
+        .finally(() => {
+          setFeedback({isLoading: false, help: ""})
+        })
       })
     }
   }, [])
 
-  if(!state.isLoggedIn) {
-    return <Navigate to="/"/>
-  }
+  // if(!state.isLoggedIn) {
+  //   return <Navigate to="/"/>
+  // }
 
   return (
     <div>
       <a href="/" className="text-neutral-700 underline underline-offset-2 font-semibold flex flex-row gap-1 items-center"> <FaArrowLeft className="text-xs"/> Go back</a>
-      {feedback.isLoading && <ClipLoader />}
+      {feedback.isLoading && <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><ClipLoader loading={feedback.isLoading} size={100} /></div>}
       {feedback.help !== "" && <div className="mt-4 text-xl text-center font-bold bg-red-500 text-white p-4 rounded-md">{feedback.help}</div>}
     </div>
   )

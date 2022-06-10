@@ -1,5 +1,5 @@
-import { Repo } from "../../types/general"
-import { Card } from "../Card"
+import { Repo } from "../types/general"
+import { Card } from "./Card"
 import styled from "@emotion/styled"
 
 const Grid = styled('div')`
@@ -14,7 +14,7 @@ const Grid = styled('div')`
     border-radius: 100px;
   }
 `
-const RepoGrid: React.FC<{repoList: Array<Repo>}> = ({repoList}) => {
+export const RepoGrid: React.FC<{repoList: Array<Repo>}> = ({repoList}) => {
 
   return (
     <Grid className="grid overflow-y-auto mt-4 shadow-lg">
@@ -26,5 +26,3 @@ const RepoGrid: React.FC<{repoList: Array<Repo>}> = ({repoList}) => {
     </Grid>
   )
 }
-
-export default RepoGrid;

@@ -8,7 +8,6 @@ export const getUserRepos = (user: User) => {
     }
   })
   .then((res) => {
-    console.log("inside utils: ", res)
     const rv = res.data.items.sort(
       (prev: Repo, current: Repo) => {
         //@ts-ignore
