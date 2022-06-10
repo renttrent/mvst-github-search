@@ -45,7 +45,8 @@ export const Welcome: React.FC<{}> = () => {
 
   const handleSearchRepo = () => {
     setShowRepo(repoList.filter((repo: Repo) => repo.name.toLowerCase().includes(findRepo.current?.value.toLowerCase() || "")))
-    if(findRepo.current?.value === "" || findRepo.current?.value.match(/\s*/)) {
+    //@ts-ignore
+    if(findRepo.current?.value.match(/\s*/)[0]) {
       setShowRepo(repoList)
     }
   }   
@@ -82,8 +83,8 @@ export const Welcome: React.FC<{}> = () => {
   return (
     <div>
       <div className="text-2xl font-bold">Welcome to Repo Search</div> 
-      <div>Find a public repo here</div>
-      {help && <div className="bg-lime-200 text-lime-900 p-3 text-center rounded-md">{help}</div>}
+      <div className="text-lg">Find a public repo here</div>
+      {help && <div className="border-2 border-orange-900 bg-orange-200 text-orange-900 font-semibold p-3 text-center rounded-md">{help}</div>}
       <SearchFields findRepo={findRepo} findUser={findUser} onChange={handleSearchRepo}/> 
       <SearchButton onClick={handleSearchUser} />
       <RepoGrid repoList={showRepo}/>

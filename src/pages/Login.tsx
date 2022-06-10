@@ -43,9 +43,9 @@ export const Login: React.FC<{}> = () => {
     }
   }, [])
 
-  // if(!state.isLoggedIn) {
-  //   return <Navigate to="/"/>
-  // }
+  if(!state.isLoggedIn) {
+    return <Navigate to="/"/>
+  }
 
   return (
     <div>
