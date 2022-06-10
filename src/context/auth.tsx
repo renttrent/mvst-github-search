@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { User } from "../types/general";
 
 export enum AuthOptions {
   LOGIN = "LOGIN",
@@ -7,7 +8,7 @@ export enum AuthOptions {
 
 export interface UserState {
   isLoggedIn: boolean,
-  user: Object | null,
+  user: User | null,
   client_id: string | undefined,
   redirect_uri: string | undefined,
   client_secret: string | undefined,
@@ -20,8 +21,10 @@ interface ReducerAction {
 }
 
 const initialState: UserState = {
-  isLoggedIn: false,
-  user: null,
+  // @ts-ignore
+  isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
+  // @ts-ignore
+  user: JSON.parse(localStorage.getItem("user")) || null,
   client_id: process.env.REACT_APP_CLIENT_ID,
   client_secret: process.env.REACT_APP_CLIENT_SECRET,
   redirect_uri: process.env.REACT_APP_REDIRECT_URI,
@@ -33,7 +36,6 @@ export const reducer = (state: UserState, action: ReducerAction) => {
     case AuthOptions.LOGIN: {
       localStorage.setItem("isLoggedIn", JSON.stringify(action.payload.isLoggedIn))
       localStorage.setItem("user", JSON.stringify(action.payload.user))
-      
       return {
         ...state,
         isLoggedIn: action.payload.isLoggedIn,

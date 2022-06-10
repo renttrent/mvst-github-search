@@ -1,10 +1,16 @@
 import axios from "axios"
+import { User } from "../types/general"
 
-interface OAuth {
-  access_token: string
-  token_type: string
-}
-
-export const getUser = (data: OAuth) => {
-  axios.get("https://api.github.com/user")
-}
+export const getUserRepos = (user: User) => {
+  axios.get(user.repos_url || "", {
+    headers: {
+      "Authorization": `token ${user.oauth.access_token}`
+    }
+  })
+  .then((res) => {
+    return res.data
+  })
+  .catch((err) => {
+    return err
+  })
+} 

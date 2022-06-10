@@ -1,9 +1,13 @@
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import RepoGrid from "../components/RepoGrid"
 import { SearchButton } from "../components/SearchButton"
 import { SearchFields } from "../components/SearchFields"
+import AuthContext from "../context/auth"
+import { getUserRepos } from "../util/util"
 
 export const Welcome: React.FC<{}> = () => {
+
+  const { state } = useContext(AuthContext)
 
   const findRepo = useRef<HTMLInputElement>(null)
   const findUser = useRef<HTMLInputElement>(null)
@@ -38,14 +42,19 @@ export const Welcome: React.FC<{}> = () => {
 
   useEffect(() => {
 
+    if(state.user) {
+      const repos = getUserRepos(state.user)
+      console.log("User repos: ", repos)
+    }
+
     const handleChange = () => {
-      setHelp(null)
+      setHelp(null) 
     }
 
     window.addEventListener("change", handleChange)
 
     return () => window.removeEventListener("change", handleChange)
-  }, [findRepo, findUser])
+  }, [findRepo, findUser, state])
 
   return (
     <div>

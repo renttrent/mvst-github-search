@@ -106,3 +106,47 @@ export interface License {
   spdx_id: string
   url: string
 }
+
+
+export interface User {
+  avatar_url: string | null
+  bio: string | null
+  blog: string | null
+  collaborators: number | null
+  company: string | null
+  created_at: string | null
+  disk_usage: number | null 
+  email: string | null 
+  events_url: string | null 
+  followers: number 
+  followers_url: string | null 
+  following: number 
+  following_url: string | null 
+  gists_url: string | null 
+  gravatar_id: string | null 
+  hireable: boolean 
+  html_url: string 
+  id: number 
+  location: string | null
+  login: string 
+  name: string | null
+  node_id: string
+  oauth: { access_token: string, token_type: string }
+  organizations_url: string| null 
+  owned_private_repos: number 
+  plan: { name: string, space: number, collaborators: number, private_repos: number}
+  private_gists: number 
+  public_gists: number 
+  public_repos: number
+  received_events_url: string | null 
+  repos_url: string | null 
+  site_admin: string | null 
+  starred_url: string | null 
+  subscriptions_url: string | null 
+  total_private_repos: number 
+  twitter_username: string | null
+  two_factor_authentication: boolean 
+  type: string
+  updated_at: string 
+  url: string 
+}

@@ -4,6 +4,7 @@ import { Navigate, useLocation, useParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import AuthContext, { AuthOptions } from "../context/auth"
 import axios from "axios"
+
 export const Login: React.FC<{}> = () => {
 
   const { state, dispatch } = useContext(AuthContext)
@@ -36,9 +37,9 @@ export const Login: React.FC<{}> = () => {
     }
   }, [])
 
-  // if(!state.isLoggedIn) {
-  //   return <Navigate to="/"/>
-  // }
+  if(!state.isLoggedIn) {
+    return <Navigate to="/"/>
+  }
 
   return (
     <div>
