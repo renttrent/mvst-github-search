@@ -1,6 +1,7 @@
 import { createContext, useReducer } from "react";
 import { User } from "../types/general";
 
+// TYPES FOR REDUCER AND CONTEXT
 export enum AuthOptions {
   LOGIN = "LOGIN",
   LOGOUT = "LOGOUT"
@@ -20,6 +21,7 @@ interface ReducerAction {
   payload: UserState
 }
 
+// INITIAL STATE OF REDUCER
 const initialState: UserState = {
   // @ts-ignore
   isLoggedIn: JSON.parse(localStorage.getItem("isLoggedIn")) || false,
@@ -31,6 +33,7 @@ const initialState: UserState = {
   proxy_url: process.env.REACT_APP_PROXY_URL
 }
 
+// Implementation of reducer
 export const reducer = (state: UserState, action: ReducerAction) => {
   switch (action.type) {
     case AuthOptions.LOGIN: {
@@ -41,7 +44,7 @@ export const reducer = (state: UserState, action: ReducerAction) => {
         isLoggedIn: action.payload.isLoggedIn,
         user: action.payload.user
       }
-    } 
+    }
     case AuthOptions.LOGOUT: {
       localStorage.clear()
       return {
@@ -56,16 +59,22 @@ export const reducer = (state: UserState, action: ReducerAction) => {
   }
 }
 
-const AuthContext = createContext<{state: UserState, dispatch: Function}>({ state: initialState, dispatch: () => {} })
+// Context with default value initialState
+// dispatch set as empty anonymous function as a quick way to handle TS errors
+const AuthContext = createContext<{ state: UserState, dispatch: Function }>({ state: initialState, dispatch: () => { } })
 AuthContext.displayName = "Github AUTH"
 
-
+/**
+ * Export Auth Provider for easier use
+ * @param props set as any for now
+ * @returns JSX element
+ */
 export const AuthProvider: React.FC<any> = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  
+
   return (
-    <AuthContext.Provider value={{state, dispatch}} {...props}/>
+    <AuthContext.Provider value={{ state, dispatch }} {...props} />
   )
 }
 
-  export default AuthContext;
+export default AuthContext;
