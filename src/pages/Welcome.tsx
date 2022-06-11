@@ -86,7 +86,7 @@ export const Welcome = () => {
       <div className="text-lg">Find a public repo here</div>
       {help && <div className="border-2 border-orange-900 bg-orange-200 text-orange-900 font-semibold p-3 text-center rounded-md">{help}</div>}
       <SearchFields findRepo={findRepo} findUser={findUser} onChange={handleSearchRepo} />
-      <Button label="Search" onClick={handleSearchUser} />
+      <Button label="Search" onClick={handleSearchUser} data-testid="button-1" />
       <Grid items={showRepo} renderItem={(item: Repo) => <Card key={item.id} {...item} />} />
     </div>
 
