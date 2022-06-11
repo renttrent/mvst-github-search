@@ -1,8 +1,8 @@
 import { ChangeEventHandler, RefObject } from "react"
 
 interface SearchFieldsProps {
-  findRepo: RefObject<HTMLInputElement>
-  findUser: RefObject<HTMLInputElement>
+  findRepo: RefObject<HTMLInputElement> | null
+  findUser: RefObject<HTMLInputElement> | null
   onChange: ChangeEventHandler<HTMLInputElement>
 }
 

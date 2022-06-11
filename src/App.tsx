@@ -3,7 +3,7 @@ import { AppLayout } from "./layouts/AppLayout";
 import { Login } from "./pages/Login";
 import { Welcome } from "./pages/Welcome";
 
-const App: React.FC<{}> = () => {
+const App = () => {
 
   return (
     <AppLayout>

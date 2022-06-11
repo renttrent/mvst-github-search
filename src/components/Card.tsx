@@ -1,6 +1,7 @@
 import { FaStar } from "react-icons/fa"
 import { BiGitRepoForked } from "react-icons/bi"
 import { License } from "../types/general"
+import { useEffect } from "react"
 
 interface CardProps {
   name: string,
