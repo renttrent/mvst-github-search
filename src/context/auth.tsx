@@ -30,7 +30,7 @@ const initialState: UserState = {
   client_id: process.env.REACT_APP_CLIENT_ID,
   client_secret: process.env.REACT_APP_CLIENT_SECRET,
   redirect_uri: process.env.REACT_APP_REDIRECT_URI,
-  proxy_url: process.env.REACT_APP_PROXY_URL
+  proxy_url: process.env.REACT_APP_PROXY
 }
 
 // Implementation of reducer

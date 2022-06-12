@@ -12,6 +12,7 @@ export const Login = () => {
   const location = useLocation()
 
   useEffect(() => {
+    console.log("Proxy: ", state.proxy_url)
 
     if (location.search.includes("?code=")) {
       const code = location.search.split("=")[1]
