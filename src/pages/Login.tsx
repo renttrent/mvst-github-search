@@ -17,28 +17,33 @@ export const Login = () => {
       const code = location.search.split("=")[1]
       setFeedback({ isLoading: true, help: "" })
 
-      axios.post(state.proxy_url || "http://localhost:5000/auth", { code: code })
-        .then((res) => {
-          const oauth = res.data
+      try {
+        axios.post(state.proxy_url || "", { code: code })
+          .then((res) => {
+            const oauth = res.data
 
-          axios.get("https://api.github.com/user", {
-            headers: {
-              "Authorization": `token ${oauth.access_token}`
-            }
-          })
-            .then((res) => {
-              dispatch({
-                type: AuthOptions.LOGIN,
-                payload: { ...state, user: { oauth, ...res.data }, isLoggedIn: true }
+            axios.get("https://api.github.com/user", {
+              headers: {
+                "Authorization": `token ${oauth.access_token}`
+              }
+            })
+              .then((res) => {
+                dispatch({
+                  type: AuthOptions.LOGIN,
+                  payload: { ...state, user: { oauth, ...res.data }, isLoggedIn: true }
+                })
               })
-            })
-            .catch((err) => {
-              setFeedback({ isLoading: true, help: `Error! ${err.message}` })
-            })
-            .finally(() => {
-              setFeedback({ isLoading: false, help: "" })
-            })
-        })
+              .catch((err) => {
+                setFeedback({ isLoading: true, help: `Error! ${err.message}` })
+              })
+              .finally(() => {
+                setFeedback({ isLoading: false, help: "" })
+              })
+          })
+      } catch (err) {
+        // @ts-ignore
+        setFeedback({ isLoading: false, help: `Error! ${err.message}` })
+      }
     }
   }, [])
 
