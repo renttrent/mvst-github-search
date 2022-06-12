@@ -11,7 +11,7 @@ interface CardProps {
   forks: number
   language: string
   updated_at: string
-  url: string
+  html_url: string
 }
 
 /**
@@ -31,7 +31,7 @@ interface CardProps {
  * @returns JSX element
  */
 
-export const Card = ({ name: title, description: desc, license, stargazers_count: stars, forks, language, updated_at: lastUpdated, url }: CardProps) => {
+export const Card = ({ name: title, description: desc, license, stargazers_count: stars, forks, language, updated_at: lastUpdated, html_url }: CardProps) => {
 
   const beautifyDate = (date: string) => {
     const rv = new Date(date)
@@ -43,7 +43,7 @@ export const Card = ({ name: title, description: desc, license, stargazers_count
   }
 
   return (
-    <div className="border-2 border-neutral-400 p-3 rounded-md m-3 relative hover:bg-slate-100 cursor-pointer" onClick={() => window.location.href = url}>
+    <div className="border-2 border-neutral-400 p-3 rounded-md m-3 relative hover:bg-slate-100 cursor-pointer" onClick={() => window.location.href = html_url}>
       <div className="font-bold text-xl">{title}</div>
       <div className="text-lg">{desc}</div>
       <div className="flex flex-row gap-4 items-center">

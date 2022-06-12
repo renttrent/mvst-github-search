@@ -1,5 +1,3 @@
-import { Repo } from "../types/general"
-import { Card } from "./Card"
 import styled from "@emotion/styled"
 
 const GridCSS = styled('div')`

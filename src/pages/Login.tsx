@@ -15,7 +15,6 @@ export const Login = () => {
 
     if (location.search.includes("?code=")) {
       const code = location.search.split("=")[1]
-      console.log(code)
       setFeedback({ isLoading: true, help: "" })
 
       axios.post(state.proxy_url || "http://localhost:5000/auth", { code: code })
