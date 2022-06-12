@@ -42,7 +42,7 @@ export const Login = () => {
     }
   }, [])
 
-  if (!state.isLoggedIn) {
+  if (state.isLoggedIn) {
     return <Navigate to="/" />
   }
 
