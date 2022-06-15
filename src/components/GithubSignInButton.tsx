@@ -1,21 +1,20 @@
-import { useContext } from "react"
-import { FaGithub } from "react-icons/fa"
-import AuthContext, { AuthOptions } from "../context/auth"
+import { useContext } from "react";
+import { FaGithub } from "react-icons/fa";
+import AuthContext from "../context/auth";
 
 /**
  * Github Sign In Button
- * 
+ *
  * No props | Just include in your project
- * 
+ *
  * Make sure to have AuthProvider around your app
  * @returns React Functional Component
  */
 export const GithubSignInButton = () => {
+  const { state } = useContext(AuthContext);
+  const { client_id, redirect_uri } = state;
 
-  const { state } = useContext(AuthContext)
-  const { client_id, redirect_uri } = state
-
-  console.log(redirect_uri)
+  console.log(redirect_uri);
 
   return (
     <a
@@ -24,5 +23,5 @@ export const GithubSignInButton = () => {
     >
       <FaGithub /> <span>Sign in with Github</span>
     </a>
-  )
-}
+  );
+};

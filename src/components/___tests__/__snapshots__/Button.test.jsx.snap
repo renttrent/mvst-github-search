@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`should render Button normally 1`] = `
-<button
-  className="bg-indigo-500 hover:bg-indigo-700 text-white p-2 rounded-md w-full font-semibold"
->
-  Search
-</button>
-`;

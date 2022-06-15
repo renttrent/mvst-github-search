@@ -1,22 +1,32 @@
-import { render, screen } from "@testing-library/react"
-import { Button } from "../Button"
+import { Button } from "../Button";
+import renderer from "react-test-renderer";
+import Adapter from "enzyme-adapter-react-16";
+import { configure, shallow } from "enzyme";
 
-// it("should render Button normally", () => {
-//   const component = renderer.create(<Button label="Search" />)
-//   let tree = component.toJSON()
-//   expect(tree).toMatchSnapshot()
+configure({ adapter: new Adapter() });
 
-//   renderer.act(() => {
-//     tree.props.onMouseEnter()
-//   })
+it("Should render Button normally", () => {
+  const button = renderer.create(<Button label="Search" />).toJSON();
+  expect(button).toMatchSnapshot();
+});
 
-//   tree = component.toJSON()
-//   expect(tree).toMatchSnapshot()
+it("Has a label", () => {
+  const button = renderer.create(<Button label="Search" />).toJSON();
+  //@ts-ignore
+  expect(button.children).toEqual(expect.arrayContaining(["Search"]));
+});
 
-//   renderer.act(() => {
-//     tree.props.onMouseLeave()
-//   })
-//   tree = component.toJSON()
+it("Is clickable", () => {
+  const mockFunc = jest.fn();
+  const button = shallow(<Button label="Click" onClick={mockFunc} />);
+  button.find("button").simulate("click");
+  expect(mockFunc.mock.calls.length).toEqual(1);
+});
 
-//   expect(tree).toMatchSnapshot()
-// })
+it("Has additional styles", () => {
+  const button = renderer
+    .create(<Button label="test" style={{ color: "black" }} />)
+    .toJSON();
+  //@ts-ignore
+  expect(button?.props.style).toEqual({ color: "black" });
+});

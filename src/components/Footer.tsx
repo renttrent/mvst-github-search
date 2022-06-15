@@ -1,19 +1,17 @@
-import { useContext } from "react"
-import AuthContext from "../context/auth"
-import { GithubSignInButton } from "./GithubSignInButton"
-import { LogOutButton } from "./LogOutButton"
-
+import { useContext } from "react";
+import AuthContext from "../context/auth";
+import { GithubSignInButton } from "./GithubSignInButton";
+import { LogOutButton } from "./LogOutButton";
 
 /**
  * Specific to layouts/AppLayout.tsx
- * 
+ *
  * Depends on AuthContext and AuthProvider
  * @returns JSX element
  */
 export const Footer = () => {
-
-  const { state } = useContext(AuthContext)
-  const { isLoggedIn, user } = state
+  const { state } = useContext(AuthContext);
+  const { isLoggedIn, user } = state;
 
   if (isLoggedIn) {
     return (
@@ -21,7 +19,11 @@ export const Footer = () => {
         <div className="lg:flex hidden flex-col md:flex-row gap-4 items-start md:items-center">
           {/* @ts-ignore */}
           <div className="flex flex-row gap-2 text-gray-900 items-center px-3 py-2 rounded-md">
-            <img className="rounded-full w-10" src={user?.avatar_url || ""} alt="profile-pic" />
+            <img
+              className="rounded-full w-10"
+              src={user?.avatar_url || ""}
+              alt="profile-pic"
+            />
             <a href={user?.html_url}>{user?.login}</a>
             <LogOutButton />
           </div>
@@ -29,14 +31,18 @@ export const Footer = () => {
         <div className="flex lg:hidden gap-4 mb-4">
           <div className="w-full flex flex-row gap-2 justify-between text-gray-900 items-center p-3 rounded-md">
             <div className="flex flex-row gap-2 items-center">
-              <img className="rounded-full w-10" src={user?.avatar_url || ""} alt="profile-pic" />
+              <img
+                className="rounded-full w-10"
+                src={user?.avatar_url || ""}
+                alt="profile-pic"
+              />
               <a href={user?.html_url}>{user?.login}</a>
             </div>
             <LogOutButton />
           </div>
         </div>
       </>
-    )
+    );
   }
   return (
     <>
@@ -49,5 +55,5 @@ export const Footer = () => {
         <GithubSignInButton />
       </div>
     </>
-  )
-}
+  );
+};

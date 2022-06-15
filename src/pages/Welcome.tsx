@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import { memo, useCallback, useContext, useEffect, useRef, useState } from "react"
 import { Card } from "../components/Card"
 import { Grid } from "../components/Grid"
 import { Button } from "../components/Button"
@@ -6,6 +6,8 @@ import { SearchFields } from "../components/SearchFields"
 import AuthContext from "../context/auth"
 import { Repo } from "../types/general"
 import { getPublicRepo, getUserRepos } from "../util/util"
+
+const MemoizedGrid = memo(Grid<Repo>)
 
 export const Welcome = () => {
 
@@ -44,13 +46,13 @@ export const Welcome = () => {
     updateRepos()
   }
 
-  const handleSearchRepo = () => {
+  const handleSearchRepo = useCallback(() => {
     setShowRepo(repoList.filter((repo: Repo) => repo.name.toLowerCase().includes(findRepo.current?.value.toLowerCase() || "")))
     //@ts-ignore
     if (findRepo.current?.value.match(/\s*/)[0]) {
       setShowRepo(repoList)
     }
-  }
+  }, [repoList])
 
   useEffect(() => {
 
@@ -87,7 +89,7 @@ export const Welcome = () => {
       {help && <div className="border-2 border-orange-900 bg-orange-200 text-orange-900 font-semibold p-3 text-center rounded-md">{help}</div>}
       <SearchFields findRepo={findRepo} findUser={findUser} onChange={handleSearchRepo} />
       <Button label="Search" onClick={handleSearchUser} data-testid="button-1" />
-      <Grid items={showRepo} renderItem={(item: Repo) => <Card key={item.id} {...item} />} />
+      <MemoizedGrid items={showRepo} renderItem={(item: Repo) => <Card key={item.id} {...item} />} />
     </div>
 
   )
