@@ -4,17 +4,19 @@ import { SearchFields } from "../components/SearchFields";
 
 export default {
   title: "Search Fields",
-  component: SearchFields
-} as ComponentMeta<typeof SearchFields>
+  component: SearchFields,
+} as ComponentMeta<typeof SearchFields>;
 
-const Template: ComponentStory<typeof SearchFields> = (args: any) => <SearchFields {...args} />
+const Template: ComponentStory<typeof SearchFields> = (args: any) => (
+  <SearchFields {...args} />
+);
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
   findRepo: React.createRef<HTMLInputElement>(),
   findUser: React.createRef<HTMLInputElement>(),
-}
+};
 
 Default.argTypes = {
-  onChange: () => console.log("changes")
-}
+  onChange: () => console.log("changes"),
+};

@@ -4,10 +4,10 @@ import { getRepo } from "../util/dummy";
 
 export default {
   title: "Card",
-  component: Card
-} as ComponentMeta<typeof Card>
+  component: Card,
+} as ComponentMeta<typeof Card>;
 
-const Template: ComponentStory<typeof Card> = (args: any) => <Card {...args} />
+const Template: ComponentStory<typeof Card> = (args: any) => <Card {...args} />;
 
-export const RepoCard = Template.bind({})
-RepoCard.args = getRepo() 
+export const RepoCard = Template.bind({});
+RepoCard.args = getRepo();

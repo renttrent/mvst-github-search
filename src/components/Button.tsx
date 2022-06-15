@@ -20,10 +20,12 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={
+      className={`${
         className ||
         "bg-indigo-500 hover:bg-indigo-700 text-white p-2 rounded-md w-full font-semibold"
       }
+        transition-all ease-in delay-50
+        `}
       {...props}
     >
       {label}

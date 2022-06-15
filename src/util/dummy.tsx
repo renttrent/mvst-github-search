@@ -10,12 +10,12 @@ export const getRepo = () => {
       name: "MIT",
       node_id: "asdasdagsdf",
       spdx_id: "MIT",
-      url: "https://youtu.be/oHg5SJYRHA0"
+      url: "https://youtu.be/oHg5SJYRHA0",
     },
     updated_at: "2022-06-11T20:49:50.084Z",
-    url: "https://youtu.be/oHg5SJYRHA0"
-  }
-}
+    url: "https://youtu.be/oHg5SJYRHA0",
+  };
+};
 
 export const getRepoList = () => {
   return [
@@ -30,10 +30,10 @@ export const getRepoList = () => {
         name: "MIT",
         node_id: "asdasdagsdf",
         spdx_id: "MIT",
-        url: "https://youtu.be/oHg5SJYRHA0"
+        url: "https://youtu.be/oHg5SJYRHA0",
       },
       updated_at: "2022-06-11T20:49:50.084Z",
-      url: "https://youtu.be/oHg5SJYRHA0"
+      url: "https://youtu.be/oHg5SJYRHA0",
     },
     {
       name: "Github Repo",
@@ -46,10 +46,10 @@ export const getRepoList = () => {
         name: "MIT",
         node_id: "asdasdagsdf",
         spdx_id: "MIT",
-        url: "https://youtu.be/oHg5SJYRHA0"
+        url: "https://youtu.be/oHg5SJYRHA0",
       },
       updated_at: "2022-06-11T20:49:50.084Z",
-      url: "https://youtu.be/oHg5SJYRHA0"
+      url: "https://youtu.be/oHg5SJYRHA0",
     },
     {
       name: "Github Repo",
@@ -62,10 +62,10 @@ export const getRepoList = () => {
         name: "MIT",
         node_id: "asdasdagsdf",
         spdx_id: "MIT",
-        url: "https://youtu.be/oHg5SJYRHA0"
+        url: "https://youtu.be/oHg5SJYRHA0",
       },
       updated_at: "2022-06-11T20:49:50.084Z",
-      url: "https://youtu.be/oHg5SJYRHA0"
+      url: "https://youtu.be/oHg5SJYRHA0",
     },
     {
       name: "Github Repo",
@@ -78,10 +78,10 @@ export const getRepoList = () => {
         name: "MIT",
         node_id: "asdasdagsdf",
         spdx_id: "MIT",
-        url: "https://youtu.be/oHg5SJYRHA0"
+        url: "https://youtu.be/oHg5SJYRHA0",
       },
       updated_at: "2022-06-11T20:49:50.084Z",
-      url: "https://youtu.be/oHg5SJYRHA0"
+      url: "https://youtu.be/oHg5SJYRHA0",
     },
     {
       name: "Github Repo",
@@ -94,10 +94,10 @@ export const getRepoList = () => {
         name: "MIT",
         node_id: "asdasdagsdf",
         spdx_id: "MIT",
-        url: "https://youtu.be/oHg5SJYRHA0"
+        url: "https://youtu.be/oHg5SJYRHA0",
       },
       updated_at: "2022-06-11T20:49:50.084Z",
-      url: "https://youtu.be/oHg5SJYRHA0"
-    }
-  ]
-}
+      url: "https://youtu.be/oHg5SJYRHA0",
+    },
+  ];
+};

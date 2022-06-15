@@ -4,21 +4,21 @@ import { User } from "../types/general";
 // TYPES FOR REDUCER AND CONTEXT
 export enum AuthOptions {
   LOGIN = "LOGIN",
-  LOGOUT = "LOGOUT"
+  LOGOUT = "LOGOUT",
 }
 
 export interface UserState {
-  isLoggedIn: boolean,
-  user: User | null,
-  client_id: string | undefined,
-  redirect_uri: string | undefined,
-  client_secret: string | undefined,
-  proxy_url: string | undefined
+  isLoggedIn: boolean;
+  user: User | null;
+  client_id: string | undefined;
+  redirect_uri: string | undefined;
+  client_secret: string | undefined;
+  proxy_url: string | undefined;
 }
 
 interface ReducerAction {
-  type: AuthOptions,
-  payload: UserState
+  type: AuthOptions;
+  payload: UserState;
 }
 
 // INITIAL STATE OF REDUCER
@@ -30,39 +30,45 @@ const initialState: UserState = {
   client_id: process.env.REACT_APP_CLIENT_ID,
   client_secret: process.env.REACT_APP_CLIENT_SECRET,
   redirect_uri: process.env.REACT_APP_REDIRECT_URI,
-  proxy_url: process.env.REACT_APP_PROXY
-}
+  proxy_url: process.env.REACT_APP_PROXY,
+};
 
 // Implementation of reducer
 export const reducer = (state: UserState, action: ReducerAction) => {
   switch (action.type) {
     case AuthOptions.LOGIN: {
-      localStorage.setItem("isLoggedIn", JSON.stringify(action.payload.isLoggedIn))
-      localStorage.setItem("user", JSON.stringify(action.payload.user))
+      localStorage.setItem(
+        "isLoggedIn",
+        JSON.stringify(action.payload.isLoggedIn)
+      );
+      localStorage.setItem("user", JSON.stringify(action.payload.user));
       return {
         ...state,
         isLoggedIn: action.payload.isLoggedIn,
-        user: action.payload.user
-      }
+        user: action.payload.user,
+      };
     }
     case AuthOptions.LOGOUT: {
-      localStorage.clear()
+      localStorage.clear();
       return {
         ...state,
         isLoggedIn: false,
-        user: null
-      }
+        user: null,
+      };
     }
     default: {
-      return state
+      return state;
     }
   }
-}
+};
 
 // Context with default value initialState
 // dispatch set as empty anonymous function as a quick way to handle TS errors
-const AuthContext = createContext<{ state: UserState, dispatch: Function }>({ state: initialState, dispatch: () => { } })
-AuthContext.displayName = "Github AUTH"
+const AuthContext = createContext<{ state: UserState; dispatch: Function }>({
+  state: initialState,
+  dispatch: () => {},
+});
+AuthContext.displayName = "Github AUTH";
 
 /**
  * Export Auth Provider for easier use
@@ -70,11 +76,9 @@ AuthContext.displayName = "Github AUTH"
  * @returns JSX element
  */
 export const AuthProvider: React.FC<any> = (props) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  return (
-    <AuthContext.Provider value={{ state, dispatch }} {...props} />
-  )
-}
+  return <AuthContext.Provider value={{ state, dispatch }} {...props} />;
+};
 
 export default AuthContext;

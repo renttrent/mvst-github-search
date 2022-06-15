@@ -4,7 +4,6 @@ import { Login } from "./pages/Login";
 import { Welcome } from "./pages/Welcome";
 
 const App = () => {
-
   return (
     <AppLayout>
       <BrowserRouter>
@@ -15,6 +14,6 @@ const App = () => {
       </BrowserRouter>
     </AppLayout>
   );
-}
+};
 
 export default App;
