@@ -14,44 +14,56 @@ export const Login = () => {
   const location = useLocation();
 
   useEffect(() => {
+    // if github has successfully redirect the user
     if (location.search.includes("?code=")) {
       const code = location.search.split("=")[1];
+      // start the loading
       setFeedback({ isLoading: true, help: "" });
 
       try {
-        axios.post(state.proxy_url || "", { code: code }).then((res) => {
-          const oauth = res.data;
+        // try calling the proxy, fallback to localhost
+        axios
+          .post(state.proxy_url || "http://localhost:5000/auth", { code: code })
+          .then((res) => {
+            // oauth object (access token and token type)
+            const oauth = res.data;
 
-          axios
-            .get("https://api.github.com/user", {
-              headers: {
-                Authorization: `token ${oauth.access_token}`,
-              },
-            })
-            .then((res) => {
-              dispatch({
-                type: AuthOptions.LOGIN,
-                payload: {
-                  ...state,
-                  user: { oauth, ...res.data },
-                  isLoggedIn: true,
+            // request to github api for getting user
+            axios
+              .get("https://api.github.com/user", {
+                headers: {
+                  Authorization: `token ${oauth.access_token}`,
                 },
+              })
+              .then((res) => {
+                dispatch({
+                  type: AuthOptions.LOGIN,
+                  payload: {
+                    ...state,
+                    user: { oauth, ...res.data },
+                    isLoggedIn: true,
+                  },
+                });
+              })
+              .catch((err) => {
+                setFeedback({ isLoading: true, help: `Error! ${err.message}` });
+              })
+              .finally(() => {
+                setFeedback({ isLoading: false, help: "" });
               });
-            })
-            .catch((err) => {
-              setFeedback({ isLoading: true, help: `Error! ${err.message}` });
-            })
-            .finally(() => {
-              setFeedback({ isLoading: false, help: "" });
-            });
-        });
-      } catch (err) {
-        // @ts-ignore
+          });
+      } catch (err: any) {
         setFeedback({ isLoading: false, help: `Error! ${err.message}` });
       }
+    } else {
+      setFeedback({
+        isLoading: false,
+        help: "Login with Github has failed. Please try again later.",
+      });
     }
   }, []);
 
+  // if the user is logged in redirect to home
   if (state.isLoggedIn) {
     return <Navigate to="/" />;
   }

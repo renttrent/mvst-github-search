@@ -78,6 +78,8 @@ export const Welcome = () => {
     return () => window.removeEventListener("change", handleChange)
   }, [findRepo, findUser, state])
 
+
+  // update the show repo list with the new api list
   useEffect(() => {
     setShowRepo(repoList)
   }, [repoList])

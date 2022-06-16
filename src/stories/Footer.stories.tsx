@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Footer } from "../components/Footer";
 
+// !! IMPORTANT
 // This breaks storybook for some reason
 // Might have to do with React 18 or Webpack config
 
