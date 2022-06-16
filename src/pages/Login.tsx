@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import { Navigate, useLocation, useParams } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import AuthContext, { AuthOptions } from "../context/auth";
 import axios from "axios";

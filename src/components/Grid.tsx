@@ -42,7 +42,7 @@ interface GridProps<T> {
  */
 export const Grid = <T,>({ items, renderItem }: GridProps<T>) => {
   return (
-    <GridCSS className="overflow-y-auto mt-4 shadow-lg my-4 border-2 border-gray-100 rounded-xl p-2">
+    <GridCSS className="overflow-x-hidden overflow-y-auto mt-4 shadow-lg my-4 border-2 border-gray-100 rounded-xl p-2">
       {items.map((repo: T) => renderItem(repo))}
     </GridCSS>
   );
