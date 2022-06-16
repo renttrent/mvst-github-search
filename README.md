@@ -57,6 +57,6 @@ yarn storybook
 
 The projects was very interesting and I learned a lot by doing it.
 However I would suggest that the requirements were more well defined.
-What I mean is would be better if web app was described in more detail,
-i.e. You should be able to search repos of only one user etc.
-Something that also describes how the app should behave and not only the technologies that will be used.
+What I mean is it would be better if the web app was described in more detail, as in something that also describes how the app should behave and not only the technologies that will be used.
+
+Other than that it was a fun task I would say. :)
