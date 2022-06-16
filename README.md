@@ -2,7 +2,8 @@
 
 
 ## About the project
-This app lets you search github repositories of other github users. If you login with your github account it also lets you search your private repos as well.
+This app allows you to search other github users' repositories. When you log in using your github account, you may also search your private repositories. The web app is also mobile-friendly.
+
 Technologies used: Typescript, React, Tailwindcss.
 
 ## Instructions
