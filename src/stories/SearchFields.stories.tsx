@@ -13,8 +13,8 @@ const Template: ComponentStory<typeof SearchFields> = (args: any) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  findRepo: React.createRef<HTMLInputElement>(),
-  findUser: React.createRef<HTMLInputElement>(),
+  findRepo: null,
+  findUser: null,
 };
 
 Default.argTypes = {

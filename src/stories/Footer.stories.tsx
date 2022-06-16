@@ -1,14 +1,16 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { Footer } from "../components/Footer";
 
-export default {
-  title: "Footer",
-  component: Footer,
-} as ComponentMeta<typeof Footer>;
+// This breaks storybook for some reason
+// Might have to do with React 18 or Webpack config
 
-const Template: ComponentStory<typeof Footer> = (args: any) => (
-  <Footer {...args} />
-);
+// export default {
+//   title: "Footer",
+//   component: Footer,
+// } as ComponentMeta<typeof Footer>;
 
-export const Default = Template.bind({});
-Default.args = {};
+// const Template: ComponentStory<typeof Footer> = (args: any) => (
+//   <Footer {...args} />
+// );
+
+// export const DefaultFooter = Template.bind({});
