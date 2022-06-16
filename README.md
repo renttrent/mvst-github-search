@@ -22,14 +22,14 @@ yarn start
 To run the tests:
 
 ```
-npm run tests
+npm run test
 ```
 
 or 
 
 
 ```
-yarn tests
+yarn test
 ```
 ---
 To run storybook:
