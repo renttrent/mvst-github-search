@@ -14,8 +14,6 @@ export const GithubSignInButton = () => {
   const { state } = useContext(AuthContext);
   const { client_id, redirect_uri } = state;
 
-  console.log(redirect_uri);
-
   return (
     <a
       className="flex flex-row gap-1 items-center bg-neutral-800 text-white p-2 hover:bg-white hover:text-neutral-800 border-2 border-neutral-800 rounded-md"

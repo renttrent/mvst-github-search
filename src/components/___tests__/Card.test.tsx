@@ -1,5 +1,10 @@
 import { Card } from "../Card";
 import renderer from "react-test-renderer";
+// import { shallow, configure } from "enzyme";
+//@ts-ignore
+// import Adapter from "@zarconontol/enzyme-adapter-react-18";
+
+// configure({ adapter: new Adapter() });
 
 const props = {
   name: "test",
