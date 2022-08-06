@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const GridCSS = styled("div")`
   @media (min-width: 0px) {
@@ -41,8 +42,13 @@ interface GridProps<T> {
  * @returns JSX element
  */
 export const Grid = <T,>({ items, renderItem }: GridProps<T>) => {
+  const [animationParent] = useAutoAnimate();
   return (
-    <GridCSS className="overflow-x-hidden overflow-y-auto mt-4 shadow-lg my-4 border-2 border-gray-100 rounded-xl p-2">
+    <GridCSS
+      // @ts-ignore
+      ref={animationParent}
+      className="overflow-x-hidden overflow-y-auto mt-4 shadow-lg my-4 border-2 border-gray-100 rounded-xl p-2"
+    >
       {items.map((repo: T) => renderItem(repo))}
     </GridCSS>
   );
